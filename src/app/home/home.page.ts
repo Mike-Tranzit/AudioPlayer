@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import { Howl } from 'howler';
+import {IonRange} from '@ionic/angular';
+
+export interface  Track {
+  path: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -6,7 +13,129 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  playlist: Track[] = [
+      {
+        name: 'A new begignning',
+        path: './assets/mp3/bensound-anewbeginning.mp3'
+      },
+      {
+        name: 'Creativ Minds',
+        path: './assets/mp3/bensound-creativeminds.mp3'
+      },
+      {
+        name: 'Summer',
+        path: './assets/mp3/bensound-summer.mp3'
+      },
+  ];
+
+  activeTrack: Track = null;
+  player: Howl = null;
+  isPlaying = false;
+  progress = 0;
+  @ViewChild('range', {static: false}) range: IonRange;
 
   constructor() {}
 
+  /**
+   * Запуск проигрывателя
+   * @param track
+   */
+  start(track: Track) {
+    if (this.player) {
+       this.player.stop();
+    }
+    this.player = new Howl({
+      src: [track.path],
+      onplay: () => {
+        this.isPlaying = true;
+        this.activeTrack = track;
+        this.updateProgress();
+      },
+      onend: () => {
+        this.isPlaying = false;
+        this.activeTrack = null;
+      }
+    });
+    this.player.play();
+  }
+
+  togglePlayer(pause) {
+    this.isPlaying = !pause;
+    if (!pause) {
+      this.player.play();
+    } else {
+      this.player.pause();
+    }
+  }
+
+  getActualPlailistIndex() {
+    return this.playlist.indexOf(this.activeTrack);
+  }
+
+  next() {
+    const index = this.getActualPlailistIndex();
+    if (index > 0) {
+      this.start(this.playlist[index + 1]);
+    } else {
+      this.start(this.playlist[0]);
+    }
+  }
+
+  prev() {
+      const index = this.getActualPlailistIndex();
+      if (index > 0) {
+        this.start(this.playlist[index - 1]);
+      } else {
+        this.start(this.playlist[this.playlist.length - 1]);
+      }
+  }
+
+  seek() {
+    const newValue = +this.range.value;
+    const duration = this.player.duration();
+    this.playerSeek = duration * (newValue / 100);
+  }
+
+  get playerSeek() {
+    return this.player.seek();
+  }
+
+  set playerSeek(value) {
+    this.player.seek(value);
+  }
+
+  get seekState() {
+    const {minutes, seconds} = this.calculateTrackProgress(this.playerSeek);
+    const timeResult = `${seconds} сек`;
+    if (minutes > 0) {
+      return `${minutes} мин `.concat(timeResult);
+    }
+    return timeResult;
+  }
+
+  get durationState() {
+    const {minutes, seconds} = this.calculateTrackProgress(this.trackDuration);
+    return `${minutes} мин ${seconds} сек`;
+  }
+
+  get trackDuration() {
+    return this.player.duration();
+  }
+
+  private calculateTrackProgress(value) {
+    const minutes = Math.floor(value / 60);
+    const seconds = Math.floor(value - (minutes * 60));
+    return {minutes, seconds};
+  }
+
+  updateProgress() {
+    const seek = this.playerSeek;
+    this.progress = ((seek / this.player.duration()) * 100) || 0;
+
+    if (this.isPlaying) {
+      setTimeout(() => {
+        this.updateProgress();
+      } , 100);
+    }
+  }
 }

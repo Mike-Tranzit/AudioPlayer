@@ -1,1 +1,11 @@
-
+ion-content, ion-list, ion-item {
+  --background: var(--ion-color-dark);
+  --ion-background-color: var(--ion-color-dark);
+}
+.list-ios {
+  margin-bottom: 0;
+}
+.ion-color-duration {
+  --ion-color-base: #224068;
+  --ion-color-contrast: #56b4d3;
+}
