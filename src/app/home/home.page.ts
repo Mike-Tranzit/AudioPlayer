@@ -33,7 +33,6 @@ export class HomePage {
   isPlaying = false;
   progress = 0;
   @ViewChild('range', {static: false}) range: IonRange;
-
   constructor() {}
 
   /**
