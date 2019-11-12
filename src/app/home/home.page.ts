@@ -74,7 +74,7 @@ export class HomePage {
 
   next() {
     const index = this.getActualPlailistIndex();
-    if (index > 0) {
+    if (index !== this.playlist.length - 1) {
       this.start(this.playlist[index + 1]);
     } else {
       this.start(this.playlist[0]);
@@ -105,7 +105,10 @@ export class HomePage {
   }
 
   get seekState() {
-    const {minutes, seconds} = this.calculateTrackProgress(this.playerSeek);
+    let {minutes, seconds} = this.calculateTrackProgress(this.playerSeek);
+    if (Number.isNaN(seconds)) {
+      seconds = 0;
+    }
     const timeResult = `${seconds} сек`;
     if (minutes > 0) {
       return `${minutes} мин `.concat(timeResult);
