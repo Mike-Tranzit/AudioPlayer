@@ -18,6 +18,7 @@ cache:
 
 script:
   - npm run test-headless
+  - npm run serve
   - npm run cypress:all
   - ng build --prod
 
@@ -28,3 +29,4 @@ deploy:
   keep-history: true
   local-dir: ./dist/
   on:
+    branch: build
