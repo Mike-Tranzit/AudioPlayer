@@ -1,3 +1,4 @@
+/*  Проверка панели контролов  */
 describe('Check control panel', function() {
     const countOfButtons = 3;
     beforeEach(() => {

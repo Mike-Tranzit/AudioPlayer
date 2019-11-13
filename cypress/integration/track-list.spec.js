@@ -1,3 +1,4 @@
+/*  Проверка списка треков  */
 describe('List of tracks', function() {
     beforeEach(() => {
         cy.baseVisit('/home');

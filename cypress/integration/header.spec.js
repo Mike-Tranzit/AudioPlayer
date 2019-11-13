@@ -1,3 +1,4 @@
+/*  Проверка верней части  */
 describe('Header', () => {
     const audioTitle = 'Audio Player';
     beforeEach(() => {
