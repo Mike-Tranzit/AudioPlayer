@@ -11,14 +11,14 @@ addons:
 
 before_script:
   - npm install -g @angular/cli
+  - npm install -g ionic
 
 cache:
   directories:
     - node_modules
 
 script:
-  - npm run test-headless
-  - npm run serve
+  - npm run test
   - npm run cypress:all
   - ng build --prod
 
