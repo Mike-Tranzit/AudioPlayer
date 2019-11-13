@@ -11,7 +11,6 @@ addons:
 
 before_script:
   - npm install -g @angular/cli
-  - npm install -g ionic
 
 cache:
   directories:
@@ -19,7 +18,7 @@ cache:
 
 script:
   - npm run test
-  - ng build --prod
+  - ng build --prod --base-href https://mike-tranzit.github.io/AudioPlayer/
 
 deploy:
   provider: pages
