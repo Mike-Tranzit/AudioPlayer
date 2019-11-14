@@ -1,23 +1,18 @@
 language: node_js
 node_js:
-- 12.3.1
-branches:
-  only:
-  - master
-addons:
-  chrome: stable
+  - 12.3.1
 before_script:
-- npm install -g @angular/cli
+  - npm install -g @angular/cli
 cache:
   directories:
   - node_modules
 install:
-- git checkout master
-- chmod +x ./travis/push.sh
+  - git checkout master
+  - chmod +x ./travis/push.sh
 script:
-- ng build --prod
+  - ng build --prod
 after_success:
-- "./travis/push.sh"
+  - "./travis/push.sh"
 env:
   global:
-    secure: s2IKb1qqYn78Ph0ecxWc5umPhoxxKqwW+l3vuyQ6d9BgbaglbDZQVxW7UzRsJUkj7swdFmLPc2oAuhlZwnvcOb/ZRlKvGhOd7B/lKbWLeyhfNGVZ1k6YR5e7b7kKLLilJti2G5dlBrV1FdI7YRozozSXWjdVW0rYbZZzjYuVdyGfm6+wiu9kpAk06YeoU7lEaxvW2lMggRzyJzdsYB2/WLWRkv/Nuz7mPTcknWCIO+N30KfInlkd3fCmTJ95pczPDzmvvO8BGddQUTftTwFk8Io5G30ias8bsZ7AcMFSNgg9rptoLIImgp5yFf8zEMERCyo4MAWsslYM/ml6QiihTZEsPWXRsuPQENVJSncKAZ9J+oBNxi+L2J3RkVPsMZTuhHzugtQ0rKqafAGv/YYZR09ldGHDX9dIh7T0azjtEB0b4GQaLo5r5Ptw78qBAV6hxEUNmbaOfZguscKRtvVQA9xDst0/UK6HT6z6v0koSajuKNprM/Am7POoGadRvegufan9R2Jv0a8rP+WVakT/6g6w0uR3p9pVL15IPUquTO/mpK5ESPgjLLMsUWoD+s6IbfcVrTD8R6IRivDF+/BvdR2mB5itYYjkTTU5edoya7oW/GPKqpcjN7nWPBHDHGI+UFl+B7S+gjAZ0IrEUh6rkE3UrwXGrkaAaP8gg9TDLOk=
+    secure: EFR9vtTIRecEwIhSfxghurIFnyayVhHt2JX4Z/q00lWw9uJomrz/H/k6vhCARNb1gsn4dqUKZlEEA0PdQysH+xCE9XnWZRUT0+E22q9YqhK2fQxkdKs9FG3qHbikuC2AeKLQNHVY9jFaaIDv5x0kewf8iPG0bbEcBz+KBuJMeCEFgcHjlMTLXJKeo3fDPpq56Mj2B5ZDmIi2xO1drlkfm00Jpedmn+dO3+Kd98pj0OOsXR4zrHrguZ/5cROB6nasaLXrfAANTtiib2S2tBMx7XbwrNr3bOlOn64mj9KYNKYW3g95CTaYVJGfX8eNwhaLhqxTgdZ8S6bUleG8yHpTMM8HmuJHhgP0JypNKc3u4N3cHVw9bE0fRcZ5tMD243VQvsxQ8QamVSaKq/AqdTdJho/v/RRcylzxE5ow6L3UYsRSn1zsbZSqllOgQF1Tu0hG3ZqnLrfpDwk4cV9iavvW5/9CbHlajN9TvhNnbpOqnGR0rls9y8eKRdmRMoMkGHqbpIPgdetrj1LbSMsjpycufqkTYs1myxwwIvEiIRx7cH1VmYlZHc3s9WSpI17sB/calrmL2rHlMQy+4FZ89HJPk8DnOSwY6zXgrmbrrzbws8E8Za93OHUYNfvGbUkgtmYjMGrnEmIPHzwSnFUhcmSVTd9fWWEKwoxUF1PCSC+jlSo=
