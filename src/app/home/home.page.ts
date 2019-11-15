@@ -13,6 +13,9 @@ export interface  Track {
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  /**
+   * Музыка по-умолчиню
+   */
   playlist: Track[] = [
       {
         name: 'A new begignning',
