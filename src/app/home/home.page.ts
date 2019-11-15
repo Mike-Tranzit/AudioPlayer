@@ -37,7 +37,7 @@ export class HomePage {
 
   /**
    * Запуск проигрывателя
-   * @param track
+   * @param track: Track
    */
   start(track: Track) {
     if (this.player) {
@@ -58,7 +58,11 @@ export class HomePage {
     this.player.play();
   }
 
-  togglePlayer(pause) {
+  /**
+   * Пауза, воспроизвести
+   * @param pause boolean
+   */
+  togglePlayer(pause: boolean) {
     this.isPlaying = !pause;
     if (!pause) {
       this.player.play();
@@ -71,6 +75,9 @@ export class HomePage {
     return this.playlist.indexOf(this.activeTrack);
   }
 
+  /**
+   * Следующая песня
+   */
   next() {
     const index = this.getActualPlailistIndex();
     if (index !== this.playlist.length - 1) {
@@ -80,6 +87,9 @@ export class HomePage {
     }
   }
 
+  /**
+   * Предыдущая песня
+   */
   prev() {
       const index = this.getActualPlailistIndex();
       if (index > 0) {
@@ -89,6 +99,9 @@ export class HomePage {
       }
   }
 
+  /**
+   * Текущее состояние
+   */
   seek() {
     const newValue = +this.range.value;
     const duration = this.player.duration();

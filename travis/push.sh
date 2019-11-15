@@ -7,7 +7,7 @@
       echo "TRAVIS-COMMIT: $*"
   }
   echo "push.sh was touched"
-  git config --global user.email "travis@travis-ci.org"
+  git config --global user.email "travis@travis-ci.com"
   git config --global user.name "Travis CI"
   msg " CONFIG WAS SET!"
 
@@ -37,5 +37,5 @@
   git remote rm origin
   # Add new "origin" with access token in the git URL for authentication
   git remote add origin https://Mike-Tranzit:${GH_TOKEN}@github.com/Mike-Tranzit/AudioPlayer.git > /dev/null 2>&1
-  git push origin master --quiet
+  git push origin build --quiet
   msg "PUSH WAS SUCCESS!"
