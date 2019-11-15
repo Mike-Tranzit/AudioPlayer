@@ -18,11 +18,14 @@
   # Current month and year, e.g: Apr 2018
   dateAndMonth=`date "+%b %Y"`
   # Stage the modified files in dist/output
+  git stash
+  git checkout -b build
+  git stash pop
+
   if ! git add -A; then
         err "failed to add modified files to git index"
         return 1
   fi
-
   # Create a new commit with a custom build message
   # with "[skip ci]" to avoid a build loop
   # and Travis build number for reference
@@ -37,5 +40,5 @@
   git remote rm origin
   # Add new "origin" with access token in the git URL for authentication
   git remote add origin https://Mike-Tranzit:${GH_TOKEN}@github.com/Mike-Tranzit/AudioPlayer.git > /dev/null 2>&1
-  git push origin build --quiet
+  git push origin build --quiet --force
   msg "PUSH WAS SUCCESS!"
