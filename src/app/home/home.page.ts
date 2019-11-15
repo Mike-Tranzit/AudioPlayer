@@ -104,6 +104,7 @@ export class HomePage {
   }
 
   get seekState() {
+    // tslint:disable-next-line:prefer-const
     let {minutes, seconds} = this.calculateTrackProgress(this.playerSeek);
     if (Number.isNaN(seconds)) {
       seconds = 0;
@@ -115,6 +116,9 @@ export class HomePage {
     return timeResult;
   }
 
+  /**
+   * Метод вычисления прогресса проигрывания
+   */
   get durationState() {
     const {minutes, seconds} = this.calculateTrackProgress(this.trackDuration);
     return `${minutes} мин ${seconds} сек`;
@@ -124,12 +128,19 @@ export class HomePage {
     return this.player.duration();
   }
 
-  private calculateTrackProgress(value) {
+  /**
+   *
+   * @param value number
+   */
+  private calculateTrackProgress(value: number) {
     const minutes = Math.floor(value / 60);
     const seconds = Math.floor(value - (minutes * 60));
     return {minutes, seconds};
   }
 
+  /**
+   * Обновления прогреса проигрывания
+   */
   updateProgress() {
     const seek = this.playerSeek;
     this.progress = ((seek / this.player.duration()) * 100) || 0;

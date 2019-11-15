@@ -1,12 +1,16 @@
 #!/bin/sh
-echo "push.sh was touched"
-setup_git() {
+  err() {
+      msg "$*" 1>&2
+  }
+
+  msg() {
+      echo "TRAVIS-COMMIT: $*"
+  }
+  echo "push.sh was touched"
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis CI"
   msg " CONFIG WAS SET!"
-}
 
-commit_country_json_files() {
   if ! git checkout master; then
         err "failed to checkout master"
         return 1
@@ -27,26 +31,11 @@ commit_country_json_files() {
         return 1
   fi
 
-  msg " COMMIT IS READY!"
-}
+  msg "COMMIT IS READY!"
 
-upload_files() {
   # Remove existing "origin"
   git remote rm origin
   # Add new "origin" with access token in the git URL for authentication
   git remote add origin https://Mike-Tranzit:${GH_TOKEN}@github.com/Mike-Tranzit/AudioPlayer.git > /dev/null 2>&1
   git push origin master --quiet
-  msg " PUSH WAS SUCCESS!"
-}
-
-err() {
-    msg "$*" 1>&2
-}
-
-msg() {
-    echo "TRAVIS-COMMIT: $*"
-}
-
-setup_git
-commit_country_json_files
-upload_files
+  msg "PUSH WAS SUCCESS!"

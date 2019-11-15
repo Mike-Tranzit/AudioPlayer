@@ -12,6 +12,10 @@ install:
 - chmod +x ./travis/push.sh
 script:
 - ng build --prod
+notifications:
+    email:
+      on_success: always
+      on_failure: always
 after_success:
 - "./travis/push.sh"
 env:
