@@ -14,7 +14,7 @@ export interface  Track {
 })
 export class HomePage {
   /**
-   * Музыка по-умолчиню
+   * Музыка по-умолчанию
    */
   playlist: Track[] = [
       {
