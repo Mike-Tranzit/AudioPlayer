@@ -18,8 +18,10 @@ notifications:
         - mike.anapa@gmail.com
       on_success: always
       on_failure: always
-after_success:
-- "./travis/push.sh"
-env:
-  global:
-    secure: wYVE425OV+hvY9lGaA1ZaRoAWxr1eJ+5noGb6cDz1i3ITP+PrixMHbj0Wmp8k4EiptuyYI8CaXcPNLbC3s0g2QimfEABV/qa8Vkdte3P8injK8y6uyFQhzVHApJYJId7bV4/+cMFt8pcDXnYa7d4feKyoSnR8LeEmrVIipX5/+QxNgl2cMSYxNoDF6+z87E0/9Hddd3jvggPCMSO8Rru2rEnmX7E4nGIZ5FD8zk+3l1MPT7EiwKPfJwJCYEPCl9expylL2/wyw8cUagXLge5UjhELjY0ICsTECZbn9bLp0lT+m427zAeIs7z1+gRrt4UEVn/IAQyli8fA68c2kOrHLjJHjJJTEgnCmoUaU0eCzW7bLlrnhvj65f4VUbRzxy+MQ8s0i0rteifF5JMF/rTFMfJI0j6yof4dnKyxHi1Kg3ojVMpzO/R166sJuWl/vncNlOQ4leHu9r9vi8ToZ3iwcZKhuS4pEnTu6uk00OPgniA2i50LdqSIU5yZ8RRd+J/6Wj8oYg5sXMOx0MiIRorrogliFCkkoWwKKUruc6ycZYXyWpoXggkdh6+2dSpNogdDjhfs38K9VazifcgjeGqOQbmoUh77GsRcQtBCeBN6T7qFX1ZtRj2tBN0ke2lRb5kPe10s7XVwbdvLzq03A06u80jgy89YXELOTuk8fo+prk=
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: GH_TOKEN
+  keep_history: true
+  on:
+    branch: build
