@@ -6,6 +6,7 @@ describe('Check control panel', function() {
         cy.clickByFirtsTrack();
     });
 
+    /* panel should be visible */
     it('panel should be visible', function () {
         cy.get('ion-footer').should('be.visible');
     });
