@@ -31,6 +31,7 @@ export class HomePage {
       },
   ];
 
+  /* Активный трек */
   activeTrack: Track = null;
   player: Howl = null;
   isPlaying = false;
