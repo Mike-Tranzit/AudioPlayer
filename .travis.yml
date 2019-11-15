@@ -21,7 +21,7 @@ notifications:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: GH_TOKEN
+  github_token: $GH_TOKEN
   keep_history: true
   local_dir: www
   on:
