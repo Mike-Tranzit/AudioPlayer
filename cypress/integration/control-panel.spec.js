@@ -17,6 +17,7 @@ describe('Check control panel', function() {
         });
     });
 
+    /*  Progress bar is visible */
     it('progress bar is visible', function () {
         cy.get('.ng-untouched').should('be.visible');
     });
