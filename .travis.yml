@@ -1,25 +1,25 @@
 language: node_js
 node_js:
-  - "lts/*"
+- 12.3.1
 before_install:
-  - npm install -g @angular/cli
+- npm install -g @angular/cli
 cache:
   directories:
-    - ~/.npm
-    - node_modules
-    - ~/.cache
-    override:
-    - npm ci
-    - npm run cy:verify
-install:
+  - ~/.npm
+  - node_modules
+  - ~/.cache
+override:
   - npm ci
-  - git checkout master
-  - chmod +x ./travis/push.sh
-script:
-  - ng lint
-  - ng build --prod
   - npm run cy:verify
-  - npm run ci:cy-run
+install:
+- npm ci
+- git checkout master
+- chmod +x ./travis/push.sh
+script:
+- ng lint
+- ng build --prod
+- npm run cy:verify
+- npm run ci:cy-run
 notifications:
     email:
       recipients:
