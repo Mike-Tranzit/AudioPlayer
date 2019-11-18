@@ -1,6 +1,6 @@
 /*  Проверка верней части  */
 describe('Header', () => {
-    const audioTitle = 'Audio Player';
+    const audioTitle = 'Аудио проигрыватель';
     beforeEach(() => {
         cy.baseVisit('/home');
     });
