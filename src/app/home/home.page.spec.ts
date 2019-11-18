@@ -3,7 +3,6 @@ import { IonicModule } from '@ionic/angular';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HomePage } from './home.page';
 import { Howl } from 'howler';
-import {IonRange} from '@ionic/angular';
 
 describe('HomePage', () => {
   const INIT_PROGRESS = 0;
@@ -21,6 +20,7 @@ describe('HomePage', () => {
     expect(component).toBeTruthy();
   });
 
+  /* Тест что на странице 3 элемента */
   it('playlist should have 3 elements', () => {
     const { component } = setup();
     expect(component.playlist.length).toEqual(3);
